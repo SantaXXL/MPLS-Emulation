@@ -1,0 +1,58 @@
+﻿<Window x:Class="CableCloud.CableCloudGUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             ResizeMode="CanMinimize"
+             d:DesignHeight="600" d:DesignWidth="500" Title="CableCloud"
+        SizeToContent="WidthAndHeight">
+    <Grid Height="571" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="285*"/>
+            <RowDefinition Height="287*"/>
+        </Grid.RowDefinitions>
+        <RichTextBox x:Name="logTextBox" ScrollViewer.HorizontalScrollBarVisibility="Hidden" PreviewKeyDown="ChangeFontSizeKeyboard" PreviewMouseWheel="ChangeFontSizeMouse" ScrollViewer.VerticalScrollBarVisibility="Auto" IsReadOnly="True" FontSize="13"  Margin="10,10,10,10" Background="White">
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0"/>
+                </Style>
+                <Style TargetType="ScrollViewer">
+                    <Setter Property="MaxWidth" Value="465" />
+                </Style>
+            </RichTextBox.Resources>
+        </RichTextBox>
+        <ListView x:Name="tableOfCables" Margin="10,10,10,10" PreviewKeyDown="ChangeFontSizeKeyboard" PreviewMouseWheel="ChangeFontSizeMouse" IsSynchronizedWithCurrentItem="True" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" AlternationCount="2">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Style.Triggers>
+                        <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
+                            <Setter Property="Background" Value="White" />
+                        </Trigger>
+                        <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
+                            <Setter Property="Background" Value="#f8f8f8" />
+                        </Trigger>
+                    </Style.Triggers>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <EventSetter Event="MouseDoubleClick" Handler="ChangeCableStatus_DoubleClick" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridView.ColumnHeaderContainerStyle>
+                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                            <Setter Property="FontSize" Value="15"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </GridView.ColumnHeaderContainerStyle>
+                    <GridViewColumn  Header="Node1" Width="85" DisplayMemberBinding="{Binding Node1}"/>
+                    <GridViewColumn Header="Port1" Width="85" DisplayMemberBinding="{Binding Port1}"/>
+                    <GridViewColumn Header="Node2" Width="85" DisplayMemberBinding="{Binding Node2}"/>
+                    <GridViewColumn Header="Port2" Width="85" DisplayMemberBinding="{Binding Port2}"/>
+                    <GridViewColumn Header="Status" Width="100" DisplayMemberBinding="{Binding Status}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>

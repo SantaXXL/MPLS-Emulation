@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkNode", "NetworkNode\NetworkNode.csproj", "{FB8F6A16-094A-4CD3-B797-DB9FF3E65C30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableCloud", "CableCloud\CableCloud.csproj", "{262FEFF6-689D-4E0C-8C86-73311468FDDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagementSystem", "ManagementSystem\ManagementSystem.csproj", "{A9633EBE-0012-4DDA-B0D0-6310E1D5CC19}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D6A0AC51-0F17-4FAC-8EBA-010ECD31DDDD}"
+	ProjectSection(SolutionItems) = preProject
+		run_simulation.bat = run_simulation.bat
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host", "Host\Host.csproj", "{CD62673B-98F1-4BAA-90B3-6AAD53E671A2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{26EC7D92-10A1-4B2B-9889-A6540B4AF97D} = {26EC7D92-10A1-4B2B-9889-A6540B4AF97D}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools", "Tools\Tools.csproj", "{26EC7D92-10A1-4B2B-9889-A6540B4AF97D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configs", "Configs", "{C6735AC0-6CB5-4A5A-8110-7B72E5FE64AA}"
+	ProjectSection(SolutionItems) = preProject
+		Resources\cloud.cloudconfig = Resources\cloud.cloudconfig
+		Resources\host1.hostconfig = Resources\host1.hostconfig
+		Resources\host2.hostconfig = Resources\host2.hostconfig
+		Resources\host3.hostconfig = Resources\host3.hostconfig
+		Resources\host4.hostconfig = Resources\host4.hostconfig
+		Resources\host5.hostconfig = Resources\host5.hostconfig
+		Resources\ms.msconfig = Resources\ms.msconfig
+		Resources\node1.nodeconfig = Resources\node1.nodeconfig
+		Resources\node2.nodeconfig = Resources\node2.nodeconfig
+		Resources\node3.nodeconfig = Resources\node3.nodeconfig
+		Resources\node4.nodeconfig = Resources\node4.nodeconfig
+		Resources\node5.nodeconfig = Resources\node5.nodeconfig
+		Resources\node6.nodeconfig = Resources\node6.nodeconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB8F6A16-094A-4CD3-B797-DB9FF3E65C30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB8F6A16-094A-4CD3-B797-DB9FF3E65C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB8F6A16-094A-4CD3-B797-DB9FF3E65C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB8F6A16-094A-4CD3-B797-DB9FF3E65C30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{262FEFF6-689D-4E0C-8C86-73311468FDDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{262FEFF6-689D-4E0C-8C86-73311468FDDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{262FEFF6-689D-4E0C-8C86-73311468FDDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{262FEFF6-689D-4E0C-8C86-73311468FDDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9633EBE-0012-4DDA-B0D0-6310E1D5CC19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9633EBE-0012-4DDA-B0D0-6310E1D5CC19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9633EBE-0012-4DDA-B0D0-6310E1D5CC19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9633EBE-0012-4DDA-B0D0-6310E1D5CC19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD62673B-98F1-4BAA-90B3-6AAD53E671A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD62673B-98F1-4BAA-90B3-6AAD53E671A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD62673B-98F1-4BAA-90B3-6AAD53E671A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD62673B-98F1-4BAA-90B3-6AAD53E671A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26EC7D92-10A1-4B2B-9889-A6540B4AF97D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26EC7D92-10A1-4B2B-9889-A6540B4AF97D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26EC7D92-10A1-4B2B-9889-A6540B4AF97D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26EC7D92-10A1-4B2B-9889-A6540B4AF97D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C6735AC0-6CB5-4A5A-8110-7B72E5FE64AA} = {D6A0AC51-0F17-4FAC-8EBA-010ECD31DDDD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3B9621FD-5772-4D09-A04F-1183E1D5245C}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,286 @@
+﻿<Window x:Class="ManagementSystem.MainWindow"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        ResizeMode="CanMinimize"
+        Title="ManagementSystem" Height="855.5" Width="648">
+
+    <Grid Margin="5,5,5,5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="115*"/>
+            <RowDefinition Height="152*"/>
+            <RowDefinition Height="0*"/>
+            <!--<RowDefinition Height="10*"/>-->
+        </Grid.RowDefinitions>
+        <!-- Upper box -->
+        <RichTextBox x:Name="logTextBox" PreviewKeyDown="ChangeFontSizeKeyboard" PreviewMouseWheel="ChangeFontSizeMouse" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto" IsReadOnly="True" FontSize="13"  Margin="104,9,104,10" Grid.Column="1" Background="White">
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0"/>
+                </Style>
+                <Style TargetType="ScrollViewer">
+                    <Setter Property="MaxWidth" Value="437.5" />
+                </Style>
+            </RichTextBox.Resources>
+        </RichTextBox>
+
+
+        <!-- Left fields -->
+
+        <TabControl x:Name="tabControl" Grid.ColumnSpan="2" Height="450" VerticalAlignment="Top" Margin="75,0,75,0" Grid.Row="1">
+            <TabItem Header="MPLS-FIB">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Router" Width="90" Margin="79,5,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="40"/>
+                    <TextBox x:Name="MPLS_FIB_RouterName" Height="26" Margin="79,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="90" />
+                    <Label Content="Destination&#xD;&#xA;   Address" Width="90" Margin="193,5,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="40"/>
+                    <TextBox x:Name="MPLS_FIB_DestAddress" Margin="193,50,0,0" Height="26"  TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="90"/>
+                    <Label Content="FEC" Width="90" Margin="307,5,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left"  VerticalAlignment="Top" Height="40"/>
+                    <TextBox x:Name="MPLS_FIB_FEC" Margin="307,50,0,0" Height="26" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="90"/>
+                    <Button Content="Add" Margin="150,83,251,0" VerticalAlignment="Top" Height="20" Click="MPLS_FIB_AddButton_Click"/>
+                    <Button  Content="Delete" Margin="250,83,151,0" VerticalAlignment="Top" Height="20" Click="MPLS_FIB_DeleteButton_Click"/>
+                    <!-- Left list -->
+                    <ListView x:Name="MPLS_FIB_Table" Margin="10,110,10,10" IsSynchronizedWithCurrentItem="True" AlternationCount="2" PreviewKeyDown="ChangeFontSizeKeyboard" PreviewMouseWheel="ChangeFontSizeMouse">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Style.Triggers>
+                                    <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
+                                        <Setter Property="Background" Value="White" />
+                                    </Trigger>
+                                    <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
+                                        <Setter Property="Background" Value="#f8f8f8" />
+                                    </Trigger>
+                                </Style.Triggers>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridView.ColumnHeaderContainerStyle>
+                                    <Style TargetType="GridViewColumnHeader">
+                                        <Setter Property="FontSize" Value="15"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                    </Style>
+                                </GridView.ColumnHeaderContainerStyle>
+                                <GridViewColumn Header="Router" Width="120" DisplayMemberBinding="{Binding RouterName}"/>
+                                <GridViewColumn Header="DestAddress" Width="120" DisplayMemberBinding="{Binding DestAddress}"/>
+                                <GridViewColumn Header="FEC" Width="120" DisplayMemberBinding="{Binding FEC}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="IP-FIB">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Router" Width="90" Margin="79,5,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="40"/>
+                    <TextBox x:Name="IP_FIB_RouterName" Width="90" Height="26" Margin="79,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                    <Label Content="Destination&#xD;&#xA;   Address" Width="90" Margin="193,5,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" RenderTransformOrigin="1.188,0.575"/>
+                    <TextBox x:Name="IP_FIB_DestAddress" Margin="193,50,0,0" Height="26"  TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="90"/>
+                    <Label Content="Output&#xD;&#xA;   Port" Width="90" Margin="307,5,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left"  VerticalAlignment="Top" Height="40"/>
+                    <TextBox x:Name="IP_FIB_OutPort" Margin="307,50,0,0" Height="26" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="90"/>
+                    <Button Content="Add" Margin="150,83,251,0" VerticalAlignment="Top" Height="20" Click="IP_FIB_AddButton_Click"/>
+                    <Button  Content="Delete" Margin="250,83,151,0" VerticalAlignment="Top" Height="20" Click="IP_FIB_DeleteButton_Click"/>
+                    <!-- Left list -->
+                    <ListView x:Name="IP_FIB_Table" Margin="10,110,10,10" IsSynchronizedWithCurrentItem="True" AlternationCount="2" PreviewKeyDown="ChangeFontSizeKeyboard" PreviewMouseWheel="ChangeFontSizeMouse">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Style.Triggers>
+                                    <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
+                                        <Setter Property="Background" Value="White" />
+                                    </Trigger>
+                                    <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
+                                        <Setter Property="Background" Value="#f8f8f8" />
+                                    </Trigger>
+                                </Style.Triggers>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridView.ColumnHeaderContainerStyle>
+                                    <Style TargetType="GridViewColumnHeader">
+                                        <Setter Property="FontSize" Value="15"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                    </Style>
+                                </GridView.ColumnHeaderContainerStyle>
+                                <GridViewColumn Header="Router" Width="120" DisplayMemberBinding="{Binding RouterName}"/>
+                                <GridViewColumn Header="DestAddress" Width="120" DisplayMemberBinding="{Binding DestAddress}"/>
+                                <GridViewColumn Header="OutPort" Width="120" DisplayMemberBinding="{Binding OutPort}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="FTN">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Router" Width="90" Margin="79,5,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="40"/>
+                    <TextBox x:Name="FTN_RouterName" Width="90" Height="26" Margin="79,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                    <Label Content="FEC" Width="90" Margin="193,5,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" RenderTransformOrigin="1.188,0.575"/>
+                    <TextBox x:Name="FTN_FEC" Margin="193,50,0,0" Height="26"  TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="90"/>
+                    <Label Content="NHLFE ID" Width="90" Margin="307,5,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left"  VerticalAlignment="Top" Height="40"/>
+                    <TextBox x:Name="FTN_NHLFE_ID" Margin="307,50,0,0" Height="26" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="90"/>
+                    <Button Content="Add" Margin="151,83,250,0" VerticalAlignment="Top" Height="20" Click="FTN_AddButton_Click"/>
+                    <Button  Content="Delete" Margin="250,83,151,0" VerticalAlignment="Top" Height="20" Click="FTN_DeleteButton_Click"/>
+
+                    <!-- Left list -->
+                    <ListView x:Name="FTN_Table" Margin="10,110,10,10" IsSynchronizedWithCurrentItem="True" AlternationCount="2" PreviewKeyDown="ChangeFontSizeKeyboard" PreviewMouseWheel="ChangeFontSizeMouse">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Style.Triggers>
+                                    <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
+                                        <Setter Property="Background" Value="White" />
+                                    </Trigger>
+                                    <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
+                                        <Setter Property="Background" Value="#f8f8f8" />
+                                    </Trigger>
+                                </Style.Triggers>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridView.ColumnHeaderContainerStyle>
+                                    <Style TargetType="GridViewColumnHeader">
+                                        <Setter Property="FontSize" Value="15"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                    </Style>
+                                </GridView.ColumnHeaderContainerStyle>
+                                <GridViewColumn Header="Router" Width="120" DisplayMemberBinding="{Binding RouterName}"/>
+                                <GridViewColumn Header="FEC" Width="120" DisplayMemberBinding="{Binding FEC}"/>
+                                <GridViewColumn Header="NHLFE ID" Width="120" DisplayMemberBinding="{Binding NHLFE_ID}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="ILM">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Router" Width="75" Margin="22,5,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  HorizontalAlignment="Left"  VerticalAlignment="Top" Height="40"/>
+                    <TextBox x:Name="ILM_RouterName" Height="26" Margin="22,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
+                    <Label Content="Incoming&#xD;&#xA;    Port" Width="75" Margin="111,5,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="40"/>
+                    <TextBox x:Name="ILM_IncPort" Margin="111,50,0,0" Height="26"  TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
+                    <Label Content="Incoming&#xD;&#xA;   Label" Width="75" Margin="200,5,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left"  VerticalAlignment="Top" Height="40"/>
+                    <TextBox x:Name="ILM_IncLabel" Margin="200,50,0,0" Height="26" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
+                    <TextBox x:Name="ILM_PoppedLabels" Margin="289,50,0,0" Height="26"  TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
+                    <Label Content="Popped &#xD;&#xA; Labels" Margin="289,5,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  VerticalAlignment="Top" Height="40" HorizontalAlignment="Left" Width="75"/>
+
+                    <Label x:Name="ILMPointerToNHLFELabel" Content="NHLFE ID" Margin="378,5,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  VerticalAlignment="Top" Height="40" HorizontalAlignment="Left" Width="75"/>
+                    <TextBox x:Name="ILM_NHLFE_ID" Margin="378,50,23,0" Height="26"  TextWrapping="Wrap" VerticalAlignment="Top"/>
+                    <Button Content="Add" Margin="156,83,245,0" VerticalAlignment="Top" Height="20" Click="ILM_AddButton_Click"/>
+                    <Button  Content="Delete" Margin="246,83,155,0" VerticalAlignment="Top" RenderTransformOrigin="0.512,6.594" Height="20" Click="ILM_DeleteButton_Click"/>
+
+                    <!-- Left list -->
+                    <ListView x:Name="ILM_Table" Margin="10,110,10,10" IsSynchronizedWithCurrentItem="True" AlternationCount="2" PreviewKeyDown="ChangeFontSizeKeyboard" PreviewMouseWheel="ChangeFontSizeMouse">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Style.Triggers>
+                                    <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
+                                        <Setter Property="Background" Value="White" />
+                                    </Trigger>
+                                    <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
+                                        <Setter Property="Background" Value="#f8f8f8" />
+                                    </Trigger>
+                                </Style.Triggers>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridView.ColumnHeaderContainerStyle>
+                                    <Style TargetType="GridViewColumnHeader">
+                                        <Setter Property="FontSize" Value="15"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                    </Style>
+                                </GridView.ColumnHeaderContainerStyle>
+                                <GridViewColumn  Header="Router" Width="78" DisplayMemberBinding="{Binding RouterName}"/>
+                                <GridViewColumn Header="IncPort" Width="78" DisplayMemberBinding="{Binding IncPort}"/>
+                                <GridViewColumn Header="IncLabel" Width="78" DisplayMemberBinding="{Binding IncLabel}"/>
+                                <GridViewColumn Header="PoppedLabels" Width="105" DisplayMemberBinding="{Binding PoppedLabelStack}"/>
+                                <GridViewColumn Header="NHLFE ID" Width="78" DisplayMemberBinding="{Binding NHLFE_ID}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="NHLFE">
+                <Grid Background="#FFE5E5E5" Margin="0,1,-0.6,-1.4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Router" Width="65" Margin="10,5,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  HorizontalAlignment="Left"  VerticalAlignment="Top" Height="40"/>
+                    <TextBox x:Name="NHLFE_RouterName" Width="65" Height="26" Margin="10,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                    <Label Content="NHLFE ID" Width="65" Margin="88,5,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="40"/>
+                    <TextBox x:Name="NHLFE_NHLFE_ID" Margin="88,50,0,0" Height="26"  TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="65"/>
+                    <Label Content="Action" Width="65" Margin="166,5,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left"  VerticalAlignment="Top" Height="40"/>
+                    <TextBox x:Name="NHLFE_Action" Margin="166,50,245.5,0" Height="26" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                    <Label Content="OutLabel" Margin="244,5,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  VerticalAlignment="Top" Height="40" HorizontalAlignment="Left" Width="65"/>
+                    <TextBox x:Name="NHLFE_OutLabel" Margin="244,50,0,0" Height="26"  TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="65"/>
+                    <Label Content="OutPort" Margin="322,5,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  VerticalAlignment="Top" Height="40" HorizontalAlignment="Left" Width="65"/>
+                    <TextBox x:Name="NHLFE_OutPort" Margin="322,50,0,0" Height="26"  TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="65"/>
+                    <Label Content="Next ID" Margin="400,5,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  VerticalAlignment="Top" Height="40" HorizontalAlignment="Left" Width="65"/>
+                    <TextBox x:Name="NHLFE_NextID" Margin="400,50,0,0" Height="26"  TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="65"/>
+
+
+                    <Button Content="Add" Margin="155,83,245.5,0" VerticalAlignment="Top" Height="20" Click="NHLFE_AddButton_Click"/>
+                    <Button  Content="Delete" Margin="244,83,157.5,0" VerticalAlignment="Top" RenderTransformOrigin="0.512,6.594" Height="20" Click="NHLFE_DeleteButton_Click"/>
+                    <!-- Left list -->
+                    <ListView x:Name="NHLFE_Table" Margin="10,110,10,10" IsSynchronizedWithCurrentItem="True" AlternationCount="2" PreviewKeyDown="ChangeFontSizeKeyboard" PreviewMouseWheel="ChangeFontSizeMouse">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Style.Triggers>
+                                    <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
+                                        <Setter Property="Background" Value="White" />
+                                    </Trigger>
+                                    <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
+                                        <Setter Property="Background" Value="#f8f8f8" />
+                                    </Trigger>
+                                </Style.Triggers>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridView.ColumnHeaderContainerStyle>
+                                    <Style TargetType="GridViewColumnHeader">
+                                        <Setter Property="FontSize" Value="15"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                    </Style>
+                                </GridView.ColumnHeaderContainerStyle>
+                                <GridViewColumn Header="Router" Width="70" DisplayMemberBinding="{Binding RouterName}"/>
+                                <GridViewColumn Header="ID" Width="70" DisplayMemberBinding="{Binding ID}"/>
+                                <GridViewColumn Header="Action" Width="70" DisplayMemberBinding="{Binding Action}"/>
+                                <GridViewColumn Header="OutLabel" Width="70" DisplayMemberBinding="{Binding OutLabel}"/>
+                                <GridViewColumn Header="OutPort" Width="70" DisplayMemberBinding="{Binding OutPort}"/>
+                                <GridViewColumn Header="Next ID" Width="70" DisplayMemberBinding="{Binding NextID}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <CheckBox Name="RoutingCheckBox" Grid.ColumnSpan="2" Content="Show detailed&#xD;&#xA;  routing logs" Margin="530,12,0,0" Checked="ShowDetailedRoutingLogs_Checked" Unchecked="ShowDetailedRoutingLogs_Unchecked" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="100"/>
+        <CheckBox x:Name="TTLCheckBox" Grid.ColumnSpan="3" Content="Show detailed&#xA;    TTL logs" Margin="530,54,-3,0" Checked="ShowDetailedTTLLogs_Checked" Unchecked="ShowDetailedTTLLogs_Unchecked" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="105"/>
+
+    </Grid>
+</Window>

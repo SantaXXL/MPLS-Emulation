@@ -1,0 +1,29 @@
+﻿<Window x:Class="Host.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        ResizeMode="CanMinimize"
+        Height="350" Width="500">
+    <Grid Height="322" VerticalAlignment="Top">
+        <RichTextBox x:Name="logTextBox" PreviewKeyDown="OnKeyDownHandler" PreviewMouseWheel="LogTextBox_PreviewMouseWheel" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto" IsReadOnly="True" FontSize="13"  Margin="10,115,10,10" Background="White" >
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0,0,0,0"/>
+                </Style>
+                <Style TargetType="ScrollViewer">
+                    <Setter Property="MaxWidth" Value="480" />
+                </Style>
+            </RichTextBox.Resources>
+        </RichTextBox>
+        <ComboBox x:Name="destinationsComboBox" Margin="95,10,0,0" IsSynchronizedWithCurrentItem="False" SelectionChanged="destinationsComboBox_SelectionChanged" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130"/>
+        <Label Content="Destination:" VerticalAlignment ="Top" Margin="3,6,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Height="30" HorizontalAlignment="Left" Width="77"/>
+        <Label Content="Message:" HorizontalAlignment="Left" VerticalAlignment ="Top" Margin="3,41,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Width="62" Height="30"/>
+        <Label Content="Period [s]:" VerticalAlignment ="Top" Margin="245,6,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Height="30" HorizontalAlignment="Left" Width="65"/>
+        <TextBox x:Name="messageTextBox" Height="22" Margin="95,45,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button x:Name="startSendingButton" Content="Start" HorizontalAlignment="Left" Margin="10,83,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="startSendingButton_Click"/>
+        <Button x:Name="stopSendingButton" Content="Stop" HorizontalAlignment="Left" Margin="95,83,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="stopSendingButton_Click"/>
+        <ComboBox x:Name="periodsComboBox" HorizontalAlignment="Left" Margin="325,10,0,0" Width="50" IsSynchronizedWithCurrentItem="False" SelectionChanged="periodsComboBox_SelectionChanged" Height="22" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
