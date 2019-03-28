@@ -1,12 +1,24 @@
-# TSST
+# About
 
-To jest fantastyczny projekt z TSST.
+This project is meant to show how the MPLS network work - it emulates data plane. The structure of the project is as follows:
+- we have "client nodes", named "hosts" - the role of it is to send (and receive) an IP package. Each host is connected to LER (Label Edge Router)
+- "network nodes" - every node in the network that is not a host. It represents a Network Element in a MPLS network (that is, either LER or LSR). LER receives an IP package from a host and then forwards it to another node (might be either host or LSR)
+- "cable cloud" - to better emulate a real network, we shall not send packages directly between nodes, but also simulate a cable. Cable might get broken, hence connection between nodes might get broken as well.
+- "management system" - this emulates control plane and management plane (we can set, add/remove/change rules - entires in IP/MPLS FIBs)
 
-# Agent zarządzania
+The point of this project is to show how the tunneling in MPLS networks work and what shall be done to reroute a broken connection. The most important parts are implemented just like it is written in RFC 3031.
 
-1. MS dostaje HELLO `<nazwa hosta>`  
-  np. HELLO H1
-2. MS odpowiada HELLO
-3. Co 5s MS dostaje KEEPALIVE
-4. (MS do LSR) ADD_RULE/REMOVE_RULE INC_PORT | INC_LABEL | OUT_PORT | OUT_LABEL | ADDITIONAL_LABEL
-5. (MS do LER) ADD_BORDER_RULE/REMOVE_BORDER_RULE DESTINATION_IP | OUT_PORT | OUT_LABEL
+This project was written by three Warsaw University of Technology, Faculty of Electronics and Information Technology, students. Course name: TSST. 
+
+# How to run it
+
+Download the files, unzip them, open TSST.sln file in Visual Studio (we were using 2017 version), Build -> Build all.
+And then run run_simulation.bat. 
+
+Note: the program used to manipulate program windows, resources/cmdow.exe, might be classified as a virus by some programs.
+
+# Gallery
+
+[Imgur](https://i.imgur.com/fBjXOC8.png)
+[Imgur](https://i.imgur.com/6iZvah4.png)
+[Imgur](https://i.imgur.com/5aLEMMR.png)
