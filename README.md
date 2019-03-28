@@ -19,6 +19,6 @@ Note: the program used to manipulate program windows, resources/cmdow.exe, might
 
 # Gallery
 
-![Imgur](https://i.imgur.com/fBjXOC8.png)
-![Imgur](https://i.imgur.com/6iZvah4.png)
+![Imgur](https://i.imgur.com/fBjXOC8.png?1)
+![Imgur](https://i.imgur.com/6iZvah4.png?1)
 ![Imgur](https://i.imgur.com/5aLEMMR.png)
