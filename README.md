@@ -15,7 +15,7 @@ This project was written by three Warsaw University of Technology, Faculty of El
 Download the files, unzip them, open TSST.sln file in Visual Studio (we were using 2017 version), Build -> Build all.
 And then run run_simulation.bat. 
 
-Note: the program used to manipulate program windows, resources/cmdow.exe, might be classified as a virus by some programs.
+Note: the program used to manipulate program windows, resources/cmdow.exe, might be classified as a virus by some security programs.
 
 # Gallery
 
