@@ -1,8 +1,8 @@
 # About
 
-This project is meant to show how the MPLS network work - it emulates data plane. The structure of the project is as follows:
-- we have "client nodes", named "hosts" - the role of it is to send (and receive) an IP package. Each host is connected to LER (Label Edge Router)
-- "network nodes" - every node in the network that is not a host. It represents a Network Element in a MPLS network (that is, either LER or LSR). LER receives an IP package from a host and then forwards it to another node (might be either host or LSR)
+This project is meant to show how the MPLS networks work the - it emulates  data plane. The structure of the project is as follows:
+- we have "client nodes", also called "hosts" - their role is to send (and receive) IP packages. Each host is connected to LER (Label Edge Router)
+- "network nodes" - every node in the network that is not a host. It represents a Network Element in an MPLS network (that is, either LER or LSR). LER receives an IP package from a host and then forwards it to another node (might be either host or LSR)
 - "cable cloud" - to better emulate a real network, we shall not send packages directly between nodes, but also simulate a cable. Cable might get broken, hence connection between nodes might get broken as well.
 - "management system" - this emulates control plane and management plane (we can set, add/remove/change rules - entires in IP/MPLS FIBs)
 
